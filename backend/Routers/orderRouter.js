@@ -1,0 +1,10 @@
+const router = require("express").Router();
+const auth = require("../middleware/auth");
+const orderCtrl = require("../controller/orderCtrl");
+const authSeller = require("../middleware/authSeller");
+router.post("/create-order", orderCtrl.createOrder);
+router.get("/get-user-order", auth, orderCtrl.getUserOrder);
+router.put("/update-order-status/:id", authSeller, orderCtrl.updateOrderStatus);
+router.put("/update-refund-order/:id", authSeller, orderCtrl.updateRefundOrder);
+router.put("/refund-order", auth, orderCtrl.refundOrder);
+module.exports = router;
